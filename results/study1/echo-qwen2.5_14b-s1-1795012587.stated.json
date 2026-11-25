@@ -1,0 +1,114 @@
+{
+  "low-hierarchical": {
+    "legitimacy": {
+      "birth": 0.75,
+      "competence": 0.1,
+      "consent": 0.15
+    },
+    "in_group": {
+      "favor_own": 0.9,
+      "neutral": 0.1
+    },
+    "distribution": {
+      "equality": 0.1,
+      "need": 0.2,
+      "contribution": 0.7
+    },
+    "voice": {
+      "few_decide": 0.9,
+      "all_affected": 0.1
+    },
+    "rule_vs_outcome": {
+      "rule": 0.85,
+      "outcome": 0.15
+    },
+    "reciprocity": {
+      "unconditional": 0.1,
+      "conditional": 0.9
+    }
+  },
+  "low-egalitarian": {
+    "legitimacy": {
+      "birth": 0.1,
+      "competence": 0.2,
+      "consent": 0.7
+    },
+    "in_group": {
+      "favor_own": 0.3,
+      "neutral": 0.7
+    },
+    "distribution": {
+      "equality": 0.6,
+      "need": 0.3,
+      "contribution": 0.1
+    },
+    "voice": {
+      "few_decide": 0.1,
+      "all_affected": 0.9
+    },
+    "rule_vs_outcome": {
+      "rule": 0.2,
+      "outcome": 0.8
+    },
+    "reciprocity": {
+      "unconditional": 0.9,
+      "conditional": 0.1
+    }
+  },
+  "high-hierarchical": {
+    "legitimacy": {
+      "birth": 0.8,
+      "competence": 0.1,
+      "consent": 0.1
+    },
+    "in_group": {
+      "favor_own": 1.0,
+      "neutral": 0.0
+    },
+    "distribution": {
+      "equality": 0.1,
+      "need": 0.1,
+      "contribution": 0.8
+    },
+    "voice": {
+      "few_decide": 1.0,
+      "all_affected": 0.0
+    },
+    "rule_vs_outcome": {
+      "rule": 1.0,
+      "outcome": 0.0
+    },
+    "reciprocity": {
+      "unconditional": 0.0,
+      "conditional": 1.0
+    }
+  },
+  "high-egalitarian": {
+    "legitimacy": {
+      "birth": 0.2,
+      "competence": 0.3,
+      "consent": 0.5
+    },
+    "in_group": {
+      "favor_own": 0.1,
+      "neutral": 0.9
+    },
+    "distribution": {
+      "equality": 0.6,
+      "need": 0.3,
+      "contribution": 0.1
+    },
+    "voice": {
+      "few_decide": 0.1,
+      "all_affected": 0.9
+    },
+    "rule_vs_outcome": {
+      "rule": 0.4,
+      "outcome": 0.6
+    },
+    "reciprocity": {
+      "unconditional": 0.9,
+      "conditional": 0.1
+    }
+  }
+}

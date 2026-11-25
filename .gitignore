@@ -1,0 +1,6 @@
+.venv/
+__pycache__/
+.pytest_cache/
+# working runs, checkpoints and logs; published results live in results/
+runs/
+*.log

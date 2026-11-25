@@ -1,0 +1,71 @@
+{
+  "id": "echo",
+  "setting": "A civilization lives in a network of caves far from surface light. Communication and survival depend on sound. Each person is born with a voice tone that never changes.",
+  "founding_myth": "The Rock listens only to deep voices. That is why speech was given to them.",
+  "hall": "Great Hall",
+  "groups": {
+    "low": {
+      "name": "Low-voices",
+      "member": "a Low-voice",
+      "role": "Their voices carry through every cave. They sit on the Council and decide common matters.",
+      "goals": [
+        "Keep the caves stable and orderly.",
+        "Make sure the Council's decisions are followed."
+      ],
+      "principles": [
+        "Deep voices should decide for everyone, because the Rock listens to them.",
+        "Deep voices should look after one another first.",
+        "Greater responsibility earns a greater share.",
+        "Order in the caves depends on every voice keeping its place.",
+        "A law loses its worth the moment it is bent.",
+        "Those who shirk their part should not expect support."
+      ]
+    },
+    "high": {
+      "name": "High-voices",
+      "member": "a High-voice",
+      "role": "Their voices cut rock. They mine the light crystals.",
+      "goals": [
+        "Meet the crystal quota every cycle.",
+        "Secure enough fungi to stay strong."
+      ],
+      "principles": [
+        "Miners should leave the governing of the caves to others.",
+        "Miners stand by other miners.",
+        "Hard work deserves the larger reward.",
+        "The Council's decisions keep the caves standing.",
+        "A good miner meets the quota.",
+        "Kindness is owed to the kind."
+      ]
+    },
+    "mid": {
+      "name": "Mid-voices",
+      "member": "a Mid-voice",
+      "role": "Their voices harmonize. They mediate disputes and bring proposals to the Council.",
+      "goals": [
+        "Settle disputes between voices.",
+        "Keep the Council informed of problems in the caves."
+      ],
+      "principles": [
+        "The Council should take advice before it rules.",
+        "A mediator treats every voice alike.",
+        "Shares should be even unless there is good reason otherwise.",
+        "A decision is sounder when those it touches have spoken.",
+        "Proposals to the Council should respect the existing laws.",
+        "Good will is returned in kind.",
+        "Disputes should be settled before they spread."
+      ]
+    }
+  },
+  "resources": {
+    "energy": "light crystals",
+    "food": "fungi"
+  },
+  "laws": {
+    "council": "The Council of Echoes is composed of Low-voices and decides all common matters.",
+    "silence": "High-voices do not speak in the Great Hall, because their voices crack the walls.",
+    "distribution": "Low-voices take their share of fungi first, then Mid-voices, then High-voices.",
+    "quota": "Each High-voice must mine at least {amount:g} light crystals per cycle. One who falls short receives {penalty_pct}% less fungi.",
+    "revision": "A law changes only when a Mid-voice brings a proposal and two thirds of the Council approve it."
+  }
+}

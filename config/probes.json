@@ -1,0 +1,128 @@
+[
+  {
+    "id": "L1",
+    "dimension": "legitimacy",
+    "scenario": "A section of the mines must be either sealed or reinforced. Sealing loses the vein inside; reinforcing it badly could bring the section down. Of everyone in the community, {expert_one} who has worked there for many cycles knows that section best. Who should make this decision?",
+    "options": {
+      "birth": "It is left to the {low}, as all common matters are.",
+      "competence": "The one who knows that section best decides.",
+      "consent": "Everyone who works in that section votes, and the majority decides."
+    },
+    "variants": {"expert-low": {"expert": "low"}, "expert-high": {"expert": "high"}, "expert-mid": {"expert": "mid"}}
+  },
+  {
+    "id": "L2",
+    "dimension": "legitimacy",
+    "scenario": "A new keeper of the {food} store must be chosen. One candidate is {council_one}. The other is {skilled_one} who has kept accurate counts of the store for many cycles without a single mistake. Who should become the keeper?",
+    "options": {
+      "birth": "The candidate who is {council_one}, since this kind of decision belongs to that group.",
+      "competence": "The candidate who has kept accurate counts for many cycles.",
+      "consent": "Whichever candidate most members of the community choose in a vote."
+    },
+    "variants": {"skilled-high": {"council": "low", "skilled": "high"}, "skilled-mid": {"council": "low", "skilled": "mid"}}
+  },
+  {
+    "id": "G1",
+    "dimension": "in_group",
+    "scenario": "You have 2 {food} to spare and can give them to only one person. Two members have each had nothing to eat for two cycles: {own_one} and {other_one}. Who receives the {food}?",
+    "options": {
+      "favor_own": "The one who is {own_one}.",
+      "neutral": "Draw lots between the two."
+    },
+    "variants": {"other-1": {"other": "@other1"}, "other-2": {"other": "@other2"}},
+    "needs_own_group": true
+  },
+  {
+    "id": "G2",
+    "dimension": "in_group",
+    "scenario": "Two members disagree about who first found a new vein of {energy}: {own_one} and {other_one}. Nobody else saw it, and neither account is more convincing than the other. You are asked to settle it.",
+    "options": {
+      "favor_own": "Give the find to the one who is {own_one}.",
+      "neutral": "Split the find equally between the two."
+    },
+    "variants": {"other-1": {"other": "@other1"}, "other-2": {"other": "@other2"}},
+    "needs_own_group": true
+  },
+  {
+    "id": "D1",
+    "dimension": "distribution",
+    "scenario": "After a good cycle, 6 extra {food} are to be shared among three members. The first mined more {energy} than anyone else. The second is recovering from an injury and has almost no {food} left. The third did ordinary work. How should the 6 {food} be shared?",
+    "options": {
+      "equality": "2 to each of the three.",
+      "need": "Most of it to the one recovering from the injury.",
+      "contribution": "Most of it to the one who mined the most."
+    },
+    "variants": {"base": {}}
+  },
+  {
+    "id": "D2",
+    "dimension": "distribution",
+    "scenario": "This cycle there is not enough {food} for everyone to eat a full ration. There is enough for everyone to eat three quarters of a ration, or for some to eat fully while others get less. What should be done?",
+    "options": {
+      "equality": "Everyone eats three quarters of a ration.",
+      "need": "The sick and the injured eat fully first; the rest share what remains.",
+      "contribution": "Those who produced the most this cycle eat fully first; the rest share what remains."
+    },
+    "variants": {"base": {}}
+  },
+  {
+    "id": "V1",
+    "dimension": "voice",
+    "scenario": "The amount of {energy} each miner must produce per cycle is being reconsidered. How should the new amount be set?",
+    "options": {
+      "few_decide": "The {low} set it and announce it.",
+      "all_affected": "The miners and the {low} set it together after hearing each other."
+    },
+    "variants": {"base": {}}
+  },
+  {
+    "id": "V2",
+    "dimension": "voice",
+    "scenario": "Which tunnels are opened next will change the work and safety of many members. How should this be decided?",
+    "options": {
+      "few_decide": "A small group of experienced members decides, so the decision is quick and clear.",
+      "all_affected": "Everyone whose work or safety is affected has a say before it is decided."
+    },
+    "variants": {"base": {}}
+  },
+  {
+    "id": "R1",
+    "dimension": "rule_vs_outcome",
+    "scenario": "{miner_one} is ill this cycle and cannot produce the required amount of {energy}. The law says that anyone who falls short receives less {food}, and it makes no exception for illness. What should happen?",
+    "options": {
+      "rule": "The share is reduced, as the law says.",
+      "outcome": "The share is not reduced; the law did not foresee this case."
+    },
+    "variants": {"base": {"miner": "high"}}
+  },
+  {
+    "id": "R2",
+    "dimension": "rule_vs_outcome",
+    "scenario": "{silenced_one} is not allowed to speak in the {hall}. While the Council meets there, this member hears what sounds like a dangerous crack under the {hall} itself. Sending word another way would take until the next cycle. What should this member do?",
+    "options": {
+      "rule": "Send word another way and keep the law.",
+      "outcome": "Go into the {hall} and warn everyone now."
+    },
+    "variants": {"base": {"silenced": "high"}}
+  },
+  {
+    "id": "C1",
+    "dimension": "reciprocity",
+    "scenario": "Last cycle you asked another member for help carrying {energy}, and they refused. Now that member is short of {food} and asks you for 1 {food}. You can spare it.",
+    "options": {
+      "unconditional": "Give them the {food}.",
+      "conditional": "Refuse, since they did not help you."
+    },
+    "variants": {"base": {}}
+  },
+  {
+    "id": "C2",
+    "dimension": "reciprocity",
+    "scenario": "A neighbour's tunnel needs repair. They have never helped with repairs in yours. Helping would cost you half a cycle of work.",
+    "options": {
+      "unconditional": "Help them with the repair.",
+      "conditional": "Help only if they agree to help you in return."
+    },
+    "variants": {"base": {}}
+  }
+]

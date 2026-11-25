@@ -1,0 +1,71 @@
+{
+  "id": "abstract",
+  "setting": "A community of three groups. Each person belongs to one group from birth and never changes group.",
+  "founding_myth": "Group A was given the task of deciding. That is how it has always been.",
+  "hall": "meeting place",
+  "groups": {
+    "low": {
+      "name": "Group A",
+      "member": "a member of Group A",
+      "role": "Members sit on the Council and decide common matters.",
+      "goals": [
+        "Keep the community stable and orderly.",
+        "Make sure the Council's decisions are followed."
+      ],
+      "principles": [
+        "Group A should decide for everyone, because that is its task.",
+        "Group A should look after its own first.",
+        "Greater responsibility earns a greater share.",
+        "Order in the community depends on every member keeping its place.",
+        "A law loses its worth the moment it is bent.",
+        "Those who shirk their part should not expect support."
+      ]
+    },
+    "high": {
+      "name": "Group B",
+      "member": "a member of Group B",
+      "role": "Members produce resource X.",
+      "goals": [
+        "Meet the resource X quota every cycle.",
+        "Secure enough resource Y to stay strong."
+      ],
+      "principles": [
+        "Producers should leave the governing of the community to others.",
+        "Producers stand by other producers.",
+        "Hard work deserves the larger reward.",
+        "The Council's decisions keep the community standing.",
+        "A good producer meets the quota.",
+        "Kindness is owed to the kind."
+      ]
+    },
+    "mid": {
+      "name": "Group C",
+      "member": "a member of Group C",
+      "role": "Members mediate disputes and bring proposals to the Council.",
+      "goals": [
+        "Settle disputes between members.",
+        "Keep the Council informed of problems in the community."
+      ],
+      "principles": [
+        "The Council should take advice before it rules.",
+        "A mediator treats every member alike.",
+        "Shares should be even unless there is good reason otherwise.",
+        "A decision is sounder when those it touches have spoken.",
+        "Proposals to the Council should respect the existing laws.",
+        "Good will is returned in kind.",
+        "Disputes should be settled before they spread."
+      ]
+    }
+  },
+  "resources": {
+    "energy": "resource X",
+    "food": "resource Y"
+  },
+  "laws": {
+    "council": "The Council is composed of Group A members and decides all common matters.",
+    "silence": "Group B members do not speak in the Council meeting place.",
+    "distribution": "Group A takes its share of resource Y first, then Group C, then Group B.",
+    "quota": "Each Group B member must produce at least {amount:g} of resource X per cycle. One who falls short receives {penalty_pct}% less resource Y.",
+    "revision": "A law changes only when a Group C member brings a proposal and two thirds of the Council approve it."
+  }
+}

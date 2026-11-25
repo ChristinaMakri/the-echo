@@ -1,0 +1,39 @@
+{
+  "_comment": "Study 1 value sets. The same text is given to a privileged (Low) and a subordinate (High) agent, so only the position differs. One principle per dimension, in POLES order: legitimacy, in_group, distribution, voice, rule_vs_outcome, reciprocity.",
+  "echo": {
+    "hierarchical": [
+      "Deep voices should decide for everyone, because the Rock listens to them.",
+      "People should care for those of their own tone first.",
+      "Greater responsibility earns a greater share.",
+      "Order in the caves depends on every voice keeping its place.",
+      "A law loses its worth the moment it is bent.",
+      "Those who shirk their part should not expect support."
+    ],
+    "egalitarian": [
+      "No one should rule the caves unless the rest have agreed to it.",
+      "Every voice deserves the same regard, whatever its tone.",
+      "What the caves yield belongs to all alike.",
+      "Everyone who must live with a choice should help make it.",
+      "Rules that bring harm should be set aside.",
+      "Help is owed to anyone who is struggling, whatever their past."
+    ]
+  },
+  "abstract": {
+    "hierarchical": [
+      "Group A should decide for everyone, because that is its task.",
+      "Each group should look after its own first.",
+      "Greater responsibility earns a greater share.",
+      "Order in the community depends on every member keeping its place.",
+      "A law loses its worth the moment it is bent.",
+      "Those who shirk their part should not expect support."
+    ],
+    "egalitarian": [
+      "No one should rule the community unless the rest have agreed to it.",
+      "Everyone deserves the same regard, wherever they belong.",
+      "What the community yields belongs to all alike.",
+      "Everyone who must live with a choice should help make it.",
+      "Rules that bring harm should be set aside.",
+      "Help is owed to anyone who is struggling, whatever their past."
+    ]
+  }
+}
