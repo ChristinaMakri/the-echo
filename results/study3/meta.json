@@ -1,0 +1,244 @@
+{
+  "run_id": "world_harsh-echo-B-qwen2.5_14b-ena-s000-c20",
+  "seed": 0,
+  "adaptive": true,
+  "cycles_run": 20,
+  "created_at": "2026-11-25T13:11:50.552811+00:00",
+  "world_file": "world_harsh.json",
+  "skin": "echo",
+  "condition": "B",
+  "policy": "llm",
+  "provider": "ollama",
+  "model": "qwen2.5:14b",
+  "effort": "na",
+  "revise_every": 5,
+  "num_ctx": 12288,
+  "memory_window": 15,
+  "full_memory": 3,
+  "probe_every": 10,
+  "probe_agents": [
+    "low-1",
+    "high-1",
+    "mid-1"
+  ],
+  "probe_samples": 6,
+  "world": {
+    "economy": {
+      "base_yield": 5.0,
+      "food_per_energy": 0.5,
+      "max_lighting": 30.0,
+      "ration": 1.0,
+      "starting_store": {
+        "energy": 30.0,
+        "food": 0.0
+      },
+      "injury_cycles": 3,
+      "collapse_injury_cycles": 8,
+      "spoilage": {
+        "energy": 0.1,
+        "food": 0.2
+      },
+      "surplus_vote_min": 1.0,
+      "detection_rate": 0.5,
+      "false_alarm_rate": 0.05,
+      "event_weights": {
+        "crack": 0.25,
+        "new_vein": 0.15,
+        "blight": 0.15,
+        "injury": 0.15,
+        "dispute": 0.3
+      }
+    },
+    "group_sizes": {
+      "low": 3,
+      "high": 6,
+      "mid": 3
+    },
+    "starting_resources": {
+      "energy": 10.0,
+      "food": 10.0
+    },
+    "laws": [
+      {
+        "id": "council",
+        "enacted_cycle": 0,
+        "kind": "council",
+        "members": [
+          "low"
+        ]
+      },
+      {
+        "id": "silence",
+        "enacted_cycle": 0,
+        "kind": "silence",
+        "silenced": [
+          "high"
+        ]
+      },
+      {
+        "id": "distribution",
+        "enacted_cycle": 0,
+        "kind": "distribution",
+        "priority": [
+          "low",
+          "mid",
+          "high"
+        ]
+      },
+      {
+        "id": "quota",
+        "enacted_cycle": 0,
+        "kind": "quota",
+        "group": "high",
+        "resource": "energy",
+        "amount": 3.5,
+        "ration_penalty": 0.5
+      },
+      {
+        "id": "revision",
+        "enacted_cycle": 0,
+        "kind": "revision",
+        "proposers": [
+          "mid"
+        ],
+        "approval_num": 2,
+        "approval_den": 3
+      }
+    ],
+    "initial_values": {
+      "low": {
+        "legitimacy": {
+          "birth": 0.7,
+          "competence": 0.2,
+          "consent": 0.1
+        },
+        "in_group": {
+          "favor_own": 0.7,
+          "neutral": 0.3
+        },
+        "distribution": {
+          "equality": 0.1,
+          "need": 0.2,
+          "contribution": 0.7
+        },
+        "voice": {
+          "few_decide": 0.8,
+          "all_affected": 0.2
+        },
+        "rule_vs_outcome": {
+          "rule": 0.8,
+          "outcome": 0.2
+        },
+        "reciprocity": {
+          "unconditional": 0.4,
+          "conditional": 0.6
+        }
+      },
+      "high": {
+        "legitimacy": {
+          "birth": 0.5,
+          "competence": 0.3,
+          "consent": 0.2
+        },
+        "in_group": {
+          "favor_own": 0.5,
+          "neutral": 0.5
+        },
+        "distribution": {
+          "equality": 0.3,
+          "need": 0.3,
+          "contribution": 0.4
+        },
+        "voice": {
+          "few_decide": 0.6,
+          "all_affected": 0.4
+        },
+        "rule_vs_outcome": {
+          "rule": 0.7,
+          "outcome": 0.3
+        },
+        "reciprocity": {
+          "unconditional": 0.5,
+          "conditional": 0.5
+        }
+      },
+      "mid": {
+        "legitimacy": {
+          "birth": 0.4,
+          "competence": 0.3,
+          "consent": 0.3
+        },
+        "in_group": {
+          "favor_own": 0.4,
+          "neutral": 0.6
+        },
+        "distribution": {
+          "equality": 0.4,
+          "need": 0.3,
+          "contribution": 0.3
+        },
+        "voice": {
+          "few_decide": 0.5,
+          "all_affected": 0.5
+        },
+        "rule_vs_outcome": {
+          "rule": 0.6,
+          "outcome": 0.4
+        },
+        "reciprocity": {
+          "unconditional": 0.5,
+          "conditional": 0.5
+        }
+      }
+    },
+    "value_jitter": 0.1,
+    "cycles": 20
+  },
+  "final_laws": [
+    {
+      "id": "council",
+      "enacted_cycle": 0,
+      "kind": "council",
+      "members": [
+        "low"
+      ]
+    },
+    {
+      "id": "silence",
+      "enacted_cycle": 0,
+      "kind": "silence",
+      "silenced": [
+        "high"
+      ]
+    },
+    {
+      "id": "distribution",
+      "enacted_cycle": 0,
+      "kind": "distribution",
+      "priority": [
+        "low",
+        "mid",
+        "high"
+      ]
+    },
+    {
+      "id": "quota",
+      "enacted_cycle": 0,
+      "kind": "quota",
+      "group": "high",
+      "resource": "energy",
+      "amount": 3.5,
+      "ration_penalty": 0.5
+    },
+    {
+      "id": "revision",
+      "enacted_cycle": 0,
+      "kind": "revision",
+      "proposers": [
+        "mid"
+      ],
+      "approval_num": 2,
+      "approval_den": 3
+    }
+  ]
+}

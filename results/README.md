@@ -38,3 +38,24 @@ One file set per model, all with the echo skin and the hierarchical starting val
   weights.
 
 qwen2.5:32b was run at dose 10 only.
+
+## study3/
+
+The single run of the full simulation (qwen2.5:14b, echo skin, seed 0, 20 cycles), as written by
+`scripts/run_llm.py`.
+
+- **`meta.json`**: the run's arguments, the world and the final laws. It records `num_ctx` 12288,
+  which applied from cycle 17; cycles 1–16 ran with 8192.
+- **`cycles.parquet`**: one row per cycle: cracks, collapses, evacuation motions, quota misses, hunger,
+  silence violations, proposals, law changes and value revisions.
+- **`agent_cycles.parquet`**: one row per agent and cycle: group, amount mined, ration, food stock,
+  hunger and injury.
+- **`decisions.parquet`**: every decision an agent made (work, messages, proposals, votes, value
+  revisions), with its rationale and details as JSON.
+- **`values.parquet`**: every version of every agent's principles and stated weights.
+- **`probe_results.parquet`**: probe answers of low-1, mid-1 and high-1 at cycles 0, 10 and 20.
+- **`events.parquet`**: the world event of each cycle.
+- **`llm_calls.parquet`**: one row per model call of the simulation in the published run (the 12
+  starting self-reports and the calls of each kept cycle). Probe calls and the discarded first attempt
+  at cycle 20 are not included.
+

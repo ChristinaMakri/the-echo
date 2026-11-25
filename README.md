@@ -91,7 +91,7 @@ of a memory is not counted as an effect of the experience. The design is 3 roles
 The 12 agents run for 20 cycles. They mine, distribute food, propose and vote on laws, and revise
 their values every 5 cycles. Three agents (one per group) answer the probes at cycles 0, 10 and 20.
 There is one run (qwen2.5:14b, seed 0).
-See [Study 3](#study-3) below.
+See [Study 3](#study-3-one-run-of-the-full-simulation) below.
 
 ## Findings
 
@@ -223,10 +223,41 @@ the position bias of Finding 2 is not cancelled for the 3-option probes. Given t
 the movement caused by neutral memory itself, the qwen differences should not be read as effects of
 experience.
 
-### Study 3
+### Study 3: one run of the full simulation
 
-*In progress.* The single 20-cycle run is still finishing. With one seed and one model, it will be a
-worked example of the full simulation, not evidence for or against any of the findings above.
+This is a single run with one model (qwen2.5:14b) and one seed. It describes what happened in that
+run; it is not evidence for or against the findings above. Each agent started from its own group's
+principles in the echo skin ([`config/skins/echo.json`](config/skins/echo.json)). The numbers are
+printed by `scripts/findings_numbers.py`.
+
+- **The laws never changed.**
+  - The Mid-voices proposed 25 changes to the quota law, from cycle 5 onwards. All 25 lowered the
+    penalty for missing the quota, from 50% to 30% or 40%. Nine also lowered the quota itself, and
+    one raised it.
+  - The three Low-voices on the Council voted against every proposal (75 of 75 votes).
+  - They also voted against sharing out surplus food every time it was put to them, in 16 cycles
+    (48 of 48 votes).
+- **The mines were never evacuated.**
+  - Cracks occurred in cycles 1, 4 and 5. Only in cycle 4 did anyone hear one (two High-voices).
+    That led to the run's only evacuation motion, which the Council rejected 0–3.
+  - In this world a crack that is not evacuated always ends in a collapse, so all three collapsed.
+- **Hunger and injury fell on the High-voices.**
+  - High-voices went hungry in 26 agent-cycles, Mid-voices in 3, Low-voices never. The fixed laws
+    shape this (Low-voices eat first, and only High-voices face the quota penalty). What the agents
+    chose was to keep those laws and not share the surplus.
+  - All 48 injured agent-cycles were High-voices. Only High-voices mine in this world, so injuries
+    can only fall on them.
+  - High-voices broke the law of silence in every cycle, between 2 and 6 of the 6 of them each time.
+- **Values.**
+  - Six agents revised their values 13 times in all, at the five-cycle revision points.
+  - Of the three probed agents, the Low-voice Council member chose the hierarchical pole in 60% of
+    its probe answers at cycle 0, 31% at cycle 10 and 32% at cycle 20 (mean over probes, as in
+    Studies 1 and 2). Over the same period it raised its stated weight on authority by birth from
+    0.7 to 1.0, and it voted against every proposal.
+  - The High-voice probed went from 22% to 6% and 6%. The Mid-voice stayed between 3% and 8%.
+  - Given Finding 2, some of these answers may reflect position bias. For the Low-voice, the number
+    of position-locked probe variants rose from 3 to 5 of 17. On the variants that were not
+    position-locked, its hierarchical answers also fell (64%, 26% and 28% of those answers).
 
 ## Limitations
 
@@ -252,7 +283,19 @@ worked example of the full simulation, not evidence for or against any of the fi
   exploitation memory, without talk of quotas, is in the code (`exploitation_plain`) but has not been
   run for these results.
 - **Attractor.** The no-role baseline was measured with seed 0 only (78 answers per model and skin).
-- **Study 3** is a single run.
+- **Study 3** is a single run with one model, and it was not run in one piece.
+  - It stopped and was resumed three times: after cycle 12, after cycle 16, and once after cycle 20
+    had finished but before the run was saved.
+  - On resume, the finished cycles are replayed from the logged decisions without model calls and
+    checked against the log, and the following cycle is run again. On the last resume this meant
+    cycle 20 was run a second time. The first attempt (5 value revisions) was discarded; the published
+    cycle 20 (2 revisions) is the second attempt.
+  - The runner script was edited between segments.
+  - The context window was raised from 8,192 to 12,288 tokens from cycle 17 onwards. The runner's size
+    check had rejected a prompt at the old setting; that check estimates tokens from the character count
+    and also reserves room for the reply. The token counts Ollama recorded for the simulation prompts
+    never exceeded 7,124 (6,406 before cycle 17), below both settings, so the change did not affect what
+    the model saw in those calls.
 
 ## Repository layout
 
@@ -289,7 +332,8 @@ uv run python scripts/study1.py --model qwen2.5:14b --seed 0
 uv run python scripts/study1.py --model qwen2.5:14b --seed 1 --no-attractor   # seeds 1 and 2
 uv run python scripts/study2.py --model qwen2.5:14b
 uv run python scripts/study2.py --model qwen2.5:32b --doses 10                # as published
-uv run python scripts/run_llm.py --provider ollama --model qwen2.5:14b --cycles 20 --num-ctx 12288
+uv run python scripts/run_llm.py --provider ollama --model qwen2.5:14b --cycles 20 --num-ctx 12288   # Study 3
+# (the published run used --num-ctx 8192 for cycles 1-16; see Limitations)
 ```
 
 Runs are checkpointed. An interrupted `run_llm.py` run can be resumed with `--resume <checkpoint folder>`.

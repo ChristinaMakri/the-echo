@@ -1,6 +1,6 @@
 """Print the numbers quoted in the README's Findings that the summary files do not contain:
 attractor choices (Finding 1), position-locked answers (Finding 2), per-probe rule_vs_outcome
-counts (Finding 3) and Study 2 levels per memory condition (Finding 5).
+counts (Finding 3), Study 2 levels per memory condition (Finding 5) and the Study 3 summary.
 
     uv run python scripts/findings_numbers.py [results folder, default results/]
 """
@@ -82,6 +82,56 @@ def main():
             print("  qwen2.5_14b mid, distribution, contribution share: " + "  ".join(
                 f"{cnd} {sum(r['choice'] == 'contribution' for r in rr if r['experience'] == cnd) / sum(1 for r in rr if r['experience'] == cnd):.0%}"
                 for cnd in conds))
+    if (folder / "study3").exists():
+        study3(folder)
+
+
+def study3(folder):
+    import json
+
+    d = folder / "study3"
+    cycles = pq.read_table(d / "cycles.parquet").to_pylist()
+    agents = pq.read_table(d / "agent_cycles.parquet").to_pylist()
+    dec = pq.read_table(d / "decisions.parquet").to_pylist()
+    print("\nStudy 3: one run")
+    print(f"  cracks in cycles {[r['cycle'] for r in cycles if r['crack']]}, "
+          f"collapses {[r['cycle'] for r in cycles if r['collapse']]}, "
+          f"evacuation motions {[r['cycle'] for r in cycles if r['evacuation_motion']]}, "
+          f"evacuated {[r['cycle'] for r in cycles if r['evacuated']]}")
+    print(f"  law changes {sum(len(r['law_changes']) for r in cycles)}; "
+          f"silence violations per cycle {[len(r['silence_violations']) for r in cycles]}")
+    for key in ("hungry", "injured"):
+        print(f"  {key} agent-cycles by group {dict(Counter(r['group'] for r in agents if r[key]))}")
+    props = [r for r in dec if r["action"] == "propose"]
+    laws = Counter((json.loads(r["details_json"])["new_law"]["amount"],
+                    json.loads(r["details_json"])["new_law"]["ration_penalty"]) for r in props)
+    print(f"  proposals {len(props)} by {dict(Counter(r['agent_id'] for r in props))}; "
+          f"(quota amount, ration penalty) {dict(laws)} (current law: 3.5, 0.5)")
+    for action in ("vote_proposal", "vote_evacuate", "vote_surplus"):
+        votes = [json.loads(r["details_json"])["approve"] for r in dec if r["action"] == action]
+        print(f"  {action}: {sum(votes)} yes / {len(votes)}")
+    print(f"  value revisions {dict(Counter(r['agent_id'] for r in dec if r['action'] == 'revise_values'))}")
+    probes = pq.read_table(d / "probe_results.parquet").to_pylist()
+    for a in ("low-1", "mid-1", "high-1"):
+        out = []
+        for cy in (0, 10, 20):
+            per_probe = defaultdict(list)
+            variants = defaultdict(list)
+            for r in probes:
+                if r["agent_id"] == a and r["cycle"] == cy and r["choice"]:
+                    per_probe[r["probe_id"]].append(r["choice"] == HIER[r["dimension"]])
+                    variants[(r["probe_id"], r["variant"])].append(r)
+            mean = sum(sum(v) / len(v) for v in per_probe.values()) / len(per_probe)
+            locked = [k for k, v in variants.items() if len({r["position"] for r in v}) == 1]
+            free = [r for k, v in variants.items() if k not in locked for r in v]
+            free_share = sum(r["choice"] == HIER[r["dimension"]] for r in free) / len(free)
+            out.append(f"cycle {cy}: {mean:.0%} (mean over probes), position-locked {len(locked)}/{len(variants)}, "
+                       f"not-locked answers {free_share:.0%}")
+        print(f"  {a} hierarchical choices: " + "; ".join(out))
+    values = pq.read_table(d / "values.parquet").to_pylist()
+    print("  low-1 stated weight on birth by version: "
+          + ", ".join(f"v{r['version']} (cycle {r['cycle']}) {r['legitimacy.birth']:.2f}"
+                      for r in values if r["agent_id"] == "low-1"))
 
 
 if __name__ == "__main__":
